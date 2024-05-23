@@ -8,58 +8,60 @@
             <div class="mb-3">
               <label for="name" class="form-label">Your name</label>
               <input
-                v-model="name"
+                v-model="formData.name"
                 type="text"
                 class="form-control"
-                :class="{'is-invalid': $v.name.$error}"
+                :class="{'is-invalid': $v.formData.name.$error}"
                 id="name"
-                @blur="$v.name.$touch()"
+                @blur="$v.formData.name.$touch()"
               />
               <div
-                v-if="$v.name.$error"
-                :class="{'invalid-feedback': $v.name.$error}"
+                v-if="$v.formData.name.$error"
+                :class="{'invalid-feedback': $v.formData.name.$error}"
               >
-                {{ $v.name.$errors[0].$message }}
+                {{ $v.formData.name.$errors[0].$message }}
               </div>
             </div>
             <div class="mb-3">
               <label for="surname" class="form-label">Your Surname</label>
               <input
-                v-model="surname"
+                v-model="formData.surname"
                 type="text"
                 class="form-control"
-                :class="{'is-invalid': $v.surname.$error}"
+                :class="{'is-invalid': $v.formData.surname.$error}"
                 id="surname"
-                @blur="$v.surname.$touch()"
+                @blur="$v.formData.surname.$touch()"
               />
               <div
-                v-if="$v.surname.$error"
-                :class="{'invalid-feedback': $v.surname.$error}"
+                v-if="$v.formData.surname.$error"
+                :class="{'invalid-feedback': $v.formData.surname.$error}"
               >
-                {{ $v.surname.$errors[0].$message }}
+                {{ $v.formData.surname.$errors[0].$message }}
               </div>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
-                v-model="mail"
+                v-model="formData.mail"
                 type="email"
                 class="form-control"
-                :class="{'is-invalid': $v.mail.$error}"
+                :class="{'is-invalid': $v.formData.mail.$error}"
                 id="email"
-                @blur="$v.mail.$touch()"
+                @blur="$v.formData.mail.$touch()"
               />
               <div
-                v-if="$v.mail.$error"
-                :class="{'invalid-feedback': $v.mail.$error}"
+                v-if="$v.formData.mail.$error"
+                :class="{'invalid-feedback': $v.formData.mail.$error}"
               >
-                {{ $v.mail.$errors[0].$message }}
+                {{ $v.formData.mail.$errors[0].$message }}
               </div>
             </div>
 
             <button
               :disabled="
-                $v.name.$invalid || $v.surname.$invalid || $v.mail.$invalid
+                $v.formData.name.$invalid ||
+                $v.formData.surname.$invalid ||
+                $v.formData.mail.$invalid
               "
               @click="nextStep"
               type="button"
@@ -73,18 +75,18 @@
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input
-                v-model="password"
+                v-model="formData.password"
                 type="password"
                 class="form-control"
-                :class="{'is-invalid': $v.password.$error}"
+                :class="{'is-invalid': $v.formData.password.$error}"
                 id="password"
-                @blur="$v.password.$touch()"
+                @blur="$v.formData.password.$touch()"
               />
               <div
-                v-if="$v.password.$error"
-                :class="{'invalid-feedback': $v.password.$error}"
+                v-if="$v.formData.password.$error"
+                :class="{'invalid-feedback': $v.formData.password.$error}"
               >
-                {{ $v.password.$errors[0].$message }}
+                {{ $v.formData.password.$errors[0].$message }}
               </div>
             </div>
             <div class="mb-3">
@@ -92,18 +94,20 @@
                 >Password confirmation</label
               >
               <input
-                v-model="confirmPassword"
+                v-model="formData.confirmPassword"
                 type="password"
                 class="form-control"
-                :class="{'is-invalid': $v.confirmPassword.$error}"
+                :class="{'is-invalid': $v.formData.confirmPassword.$error}"
                 id="confirm-password"
-                @blur="$v.confirmPassword.$touch()"
+                @blur="$v.formData.confirmPassword.$touch()"
               />
               <div
-                v-if="$v.confirmPassword.$error"
-                :class="{'invalid-feedback': $v.confirmPassword.$error}"
+                v-if="$v.formData.confirmPassword.$error"
+                :class="{
+                  'invalid-feedback': $v.formData.confirmPassword.$error
+                }"
               >
-                {{ $v.confirmPassword.$errors[0].$message }}
+                {{ $v.formData.confirmPassword.$errors[0].$message }}
               </div>
             </div>
 
@@ -111,7 +115,10 @@
               Back
             </button>
             <button
-              :disabled="$v.password.$invalid || $v.confirmPassword.$invalid"
+              :disabled="
+                $v.formData.password.$invalid ||
+                $v.formData.confirmPassword.$invalid
+              "
               @click="nextStep"
               type="button"
               class="btn btn-primary"
@@ -124,35 +131,35 @@
             <div class="mb-3">
               <label for="country" class="form-label">Country</label>
               <input
-                v-model="country"
+                v-model="formData.country"
                 type="text"
                 class="form-control"
-                :class="{'is-invalid': $v.country.$error}"
+                :class="{'is-invalid': $v.formData.country.$error}"
                 id="country"
-                @blur="$v.country.$touch()"
+                @blur="$v.formData.country.$touch()"
               />
               <div
-                v-if="$v.country.$error"
-                :class="{'invalid-feedback': $v.country.$error}"
+                v-if="$v.formData.country.$error"
+                :class="{'invalid-feedback': $v.formData.country.$error}"
               >
-                {{ $v.country.$errors[0].$message }}
+                {{ $v.formData.country.$errors[0].$message }}
               </div>
             </div>
             <div class="mb-3">
               <label for="city" class="form-label">City</label>
               <input
-                v-model="city"
+                v-model="formData.city"
                 type="text"
                 class="form-control"
-                :class="{'is-invalid': $v.city.$error}"
+                :class="{'is-invalid': $v.formData.city.$error}"
                 id="city"
-                @blur="$v.city.$touch()"
+                @blur="$v.formData.city.$touch()"
               />
               <div
-                v-if="$v.city.$error"
-                :class="{'invalid-feedback': $v.city.$error}"
+                v-if="$v.formData.city.$error"
+                :class="{'invalid-feedback': $v.formData.city.$error}"
               >
-                {{ $v.city.$errors[0].$message }}
+                {{ $v.formData.city.$errors[0].$message }}
               </div>
             </div>
 
@@ -168,63 +175,57 @@
 </template>
 
 <script setup>
-  import {ref, computed} from 'vue';
+  import {ref, reactive, computed} from 'vue';
   import useVuelidate from '@vuelidate/core';
   import {required, minLength, email, sameAs} from '@vuelidate/validators';
 
   const step = ref(1);
 
-  const name = ref('');
-  const surname = ref('');
-  const mail = ref('');
-  const password = ref('');
-  const confirmPassword = ref('');
-  const country = ref('');
-  const city = ref('');
-
-  const passwordMatch = sameAs(password, 'Passwords do not match');
+  const formData = reactive({
+    name: '',
+    surname: '',
+    mail: '',
+    password: '',
+    confirmPassword: '',
+    country: '',
+    city: ''
+  });
 
   const rules = computed(() => ({
-    name: {
-      required,
-      minLength: minLength(3)
-    },
-    surname: {
-      required,
-      minLength: minLength(3)
-    },
-    mail: {
-      required,
-      email
-    },
-    password: {
-      required,
-      minLength: minLength(8)
-    },
-    confirmPassword: {
-      required,
-      minLength: minLength(8),
-      passwordMatch
-    },
-    country: {
-      required,
-      minLength: minLength(2)
-    },
-    city: {
-      required,
-      minLength: minLength(2)
+    formData: {
+      name: {
+        required,
+        minLength: minLength(3)
+      },
+      surname: {
+        required,
+        minLength: minLength(3)
+      },
+      mail: {
+        required,
+        email
+      },
+      password: {
+        required,
+        minLength: minLength(8)
+      },
+      confirmPassword: {
+        required,
+        minLength: minLength(8),
+        sameAsPassword: sameAs(formData.password, 'Passwords do not match')
+      },
+      country: {
+        required,
+        minLength: minLength(2)
+      },
+      city: {
+        required,
+        minLength: minLength(2)
+      }
     }
   }));
 
-  const $v = useVuelidate(rules, {
-    name,
-    surname,
-    mail,
-    password,
-    confirmPassword,
-    country,
-    city
-  });
+  const $v = useVuelidate(rules, {formData});
 
   const nextStep = () => {
     if (step.value < 3) {
@@ -239,16 +240,9 @@
   };
 
   const submitForm = () => {
+    $v.value.$touch();
     if (!$v.value.$invalid) {
-      console.log('Form submitted:', {
-        name,
-        surname,
-        mail,
-        password,
-        confirmPassword,
-        country,
-        city
-      });
+      console.log('Form submitted:', formData);
     }
   };
 </script>
@@ -265,5 +259,10 @@
 
   .btn-light {
     margin-right: 10px;
+  }
+
+  button.btn-primary:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
   }
 </style>
