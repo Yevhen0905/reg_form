@@ -166,7 +166,15 @@
             <button @click="prevStep" type="button" class="btn btn-light mr-2">
               Back
             </button>
-            <button type="submit" class="btn btn-primary">Sign up</button>
+            <button
+              :disabled="
+                $v.formData.country.$invalid || $v.formData.city.$invalid
+              "
+              type="submit"
+              class="btn btn-primary"
+            >
+              Sign up
+            </button>
           </div>
         </form>
       </div>
@@ -174,14 +182,24 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import {ref, reactive, computed} from 'vue';
   import useVuelidate from '@vuelidate/core';
   import {required, minLength, email, sameAs} from '@vuelidate/validators';
 
-  const step = ref(1);
+  const step = ref<number>(1);
 
-  const formData = reactive({
+  interface FormData {
+    name: string;
+    surname: string;
+    mail: string;
+    password: string;
+    confirmPassword: string;
+    country: string;
+    city: string;
+  }
+
+  const formData = reactive<FormData>({
     name: '',
     surname: '',
     mail: '',
@@ -227,20 +245,19 @@
 
   const $v = useVuelidate(rules, {formData});
 
-  const nextStep = () => {
+  const nextStep = (): void => {
     if (step.value < 3) {
       step.value++;
     }
   };
 
-  const prevStep = () => {
+  const prevStep = (): void => {
     if (step.value > 1) {
       step.value--;
     }
   };
 
-  const submitForm = () => {
-    $v.value.$touch();
+  const submitForm = (): void => {
     if (!$v.value.$invalid) {
       console.log('Form submitted:', formData);
     }
