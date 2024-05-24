@@ -168,7 +168,9 @@
             </button>
             <button
               :disabled="
-                $v.formData.country.$invalid || $v.formData.city.$invalid
+                !$v.formData ||
+                $v.formData.country.$invalid ||
+                $v.formData.city.$invalid
               "
               type="submit"
               class="btn btn-primary"
@@ -189,7 +191,7 @@
 
   const step = ref<number>(1);
 
-  interface FormData {
+  interface FormDataUser {
     name: string;
     surname: string;
     mail: string;
@@ -199,7 +201,7 @@
     city: string;
   }
 
-  const formData = reactive<FormData>({
+  const formData = reactive<FormDataUser>({
     name: '',
     surname: '',
     mail: '',
